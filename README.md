@@ -24,4 +24,4 @@ My project will be considered done when it includes all required tests and my ap
 
 ### **_Weekly Progress:_**
 
-_**Week 2**_ — This week, I created the repository with the scr, tests, and data folders. I created a .gitignore and README.md with a project charter. I also created prototype.py. In prototype.py, I stored one product name, price, and quantity and then had it calculate and display a subtotal. I then entered the acceptance check into the tests folder. _**Acceptance Check**_: The repository can can be successfully accessed and the prototype run by every member.
+_**Week 2**_ — This week, I created the repository with the scr, tests, and data folders. I created a .gitignore and README.md with a project charter. I also created prototype.py. In prototype.py, I stored one product name, price, and quantity and then had it calculate and display a subtotal. I then entered the acceptance check into the tests folder. _**Acceptance Check**_: The repository can be successfully accessed and the prototype run by every member.
