@@ -1,6 +1,6 @@
 #Ellen Buckingham, prototype.py for Inventory_sales_tracker.
 
-#Week 2
+#Prototype for Week 2
 #store the product's information
 product_name = "Latte"
 product_price = 3.00
@@ -15,7 +15,7 @@ print(f"Product Price: ${product_price:.2f}")
 print(f"Product Quantity: {product_quantity}")
 print(f"Product Subtotal: ${product_subtotal:.2f}")
 
-#Week 3
+#Prototype for Week 3
 #Store 3 product's information
 products = [
     {
