@@ -5,10 +5,8 @@
 product_name = "Latte"
 product_price = 3.00
 product_quantity = 2
-
 #calculate the subtotal
 product_subtotal = product_price * product_quantity
-
 #display the subtotal
 print(f"Product Name: {product_name}")
 print(f"Product Price: ${product_price:.2f}")
@@ -26,7 +24,6 @@ product1_unit_price = 3.00
 product1_quantity = 2
 product1_low_stock_threshold = 3
 product1_active_status = True
-
 #product2 information
 product2_SKU = "DRK002"
 product2_name = "Drip Coffee"
@@ -35,7 +32,6 @@ product2_unit_price = 2.00
 product2_quantity = 20
 product2_low_stock_threshold = 5
 product2_active_status = True
-
 #product3 information
 product3_SKU = "FD001"
 product3_name = "Blueberry Scone"
@@ -47,7 +43,7 @@ product3_active_status = True
 
 #Display an Inventory Line
 print("Inventory for Product 1:")
-print(f"{product1_SKU} | {product1_name} | ${product1_unit_price:.2f} | {product1_quantity}")
+print(f"{product1_SKU} | {product1_name} | ${product1_unit_price:.2f} | Qty: {product1_quantity}")
 print("------------------------")
 #Restock one item
 print(f"Quantity Before Restock: {product1_quantity}")
