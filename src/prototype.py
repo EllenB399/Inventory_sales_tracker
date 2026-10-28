@@ -17,101 +17,52 @@ print(f"Product Subtotal: ${product_subtotal:.2f}")
 
 #Prototype for Week 3
 #Store 3 product's information
-products = [
-    {
-        "SKU": "DRK001",
-        "Name": "Latte",
-        "Category": "Drink",
-        "Price": 3.00,
-        "Quantity": 10,
-        "Low_Stock_Threshold": 3,
-        "Active": True
-    },
-    {
-        "SKU": "DRK002",
-        "Name": "Drip Coffee",
-        "Category": "Drink",
-        "Price": 2.00,
-        "Quantity": 20,
-        "Low_Stock_Threshold": 5,
-        "Active": True
-    },
-    {
-        "SKU": "FD001",
-        "Name": "Blueberry Scone",
-        "Category": "Pastry",
-        "Price": 3.00,
-        "Quantity": 8,
-        "Low_Stock_Threshold": 2,
-        "Active": True
-    }
-]
-# Display inventory information for one product
-def display_inventory(product):
-    print(
-        f"{product['SKU']} | {product['Name']} | "
-        f"${product['Price']:.2f} | "
-        f"Qty: {product['Quantity']}"
-    )
-# Restock a product
-def restock_product(product, amount):
-    if not isinstance(amount, int) or isinstance(amount, bool) or amount <= 0:
-        raise ValueError("Restock amount must be a positive whole number.")
-    product["Quantity"] += amount
-# Record a sale and update inventory
-def record_sale(product, amount):
-    if not isinstance(amount, int) or isinstance(amount, bool) or amount <= 0:
-        raise ValueError("Sale quantity must be a positive whole number.")
-    if not product["Active"]:
-        raise ValueError("Cannot sell an inactive product.")
-    if amount > product["Quantity"]:
-        raise ValueError("Not enough inventory to complete the sale.")
-    subtotal = product["Price"] * amount
-    product["Quantity"] -= amount
-    print(
-        f"Receipt: {product['Name']} x {amount} = "
-        f"${subtotal:.2f}"
-    )
-    return subtotal
-# Display initial inventory
-print("INITIAL INVENTORY")
-for product in products:
-    display_inventory(product)
-# Restock each product
-print("\nRESTOCK TRACE")
-restock_amounts = {
-    "DRK001": 5,
-    "DRK002": 10,
-    "FD001": 4
-}
-for product in products:
-    amount = restock_amounts[product["SKU"]]
-    before = product["Quantity"]
-    restock_product(product, amount)
-    print(
-        f"{product['Name']}: {before} + {amount} "
-        f"= {product['Quantity']}"
-    )
-# Sell each product
-print("\nSALES TRACE")
-sale_amounts = {
-    "DRK001": 3,
-    "DRK002": 5,
-    "FD001": 2
-}
-total_sales = 0.0
-for product in products:
-    amount = sale_amounts[product["SKU"]]
-    before = product["Quantity"]
-    subtotal = record_sale(product, amount)
-    total_sales += subtotal
-    print(
-        f"Remaining {product['Name']}: "
-        f"{before} - {amount} = {product['Quantity']}"
-    )
-# Display updated inventory
-print("\nUPDATED INVENTORY")
-for product in products:
-    display_inventory(product)
-# Display total sales
-print(f"\nTotal sales: ${total_sales:.2f}")
+
+#product1 information
+product1_SKU = "DRK001"
+product1_name = "Latte"
+product1_category = "Drink"
+product1_unit_price = 3.00
+product1_quantity = 2
+product1_low_stock_threshold = 3
+product1_active_status = True
+
+#product2 information
+product2_SKU = "DRK002"
+product2_name = "Drip Coffee"
+product2_category = "Drink"
+product2_unit_price = 2.00
+product2_quantity = 20
+product2_low_stock_threshold = 5
+product2_active_status = True
+
+#product3 information
+product3_SKU = "FD001"
+product3_name = "Blueberry Scone"
+product3_category = "Food"
+product3_unit_price = 3.00
+product3_quantity = 8
+product3_low_stock_threshold = 2
+product3_active_status = True
+
+#Display an Inventory Line
+print("Inventory for Product 1:")
+print(f"{product1_SKU} | {product1_name} | ${product1_unit_price:.2f} | {product1_quantity}")
+print("------------------------")
+#Restock one item
+print(f"Quantity Before Restock: {product1_quantity}")
+print("Amount to Restock: 5")
+product1_quantity = product1_quantity + 5
+print(f"Latte Quantity after Restock: {product1_quantity}")
+print("------------------------")
+#Sell one item
+sell_quantity = 2
+subtotal = product1_unit_price * sell_quantity
+product1_quantity = product1_quantity - sell_quantity
+#Display Subtotal
+print("Sale")
+print(f"Item Sold: {product1_name}")
+print(f"Unit Price: ${product1_unit_price:.2f}")
+print(f"Quantity Sold: {sell_quantity}")
+print(f"Subtotal: ${product1_unit_price:.2f} x {sell_quantity} = ${subtotal:.2f}")
+print(f"Remaining Latte Quantity: {product1_quantity}")
