@@ -62,3 +62,81 @@ print(f"Unit Price: ${product1_unit_price:.2f}")
 print(f"Quantity Sold: {sell_quantity}")
 print(f"Subtotal: ${product1_unit_price:.2f} x {sell_quantity} = ${subtotal:.2f}")
 print(f"Remaining Latte Quantity: {product1_quantity}")
+
+#Prototype for Week 4
+
+#product1 information
+product1_SKU = "DRK001"
+product1_name = "Latte"
+product1_category = "Drink"
+product1_unit_price = 3.00
+product1_quantity = 2
+product1_low_stock_threshold = 3
+product1_active_status = True
+
+#product2 information
+product2_SKU = "DRK002"
+product2_name = "Drip Coffee"
+product2_category = "Drink"
+product2_unit_price = 2.00
+product2_quantity = 20
+product2_low_stock_threshold = 5
+product2_active_status = True
+
+#product3 information
+product3_SKU = "FD001"
+product3_name = "Blueberry Scone"
+product3_category = "Food"
+product3_unit_price = 3.00
+product3_quantity = 8
+product3_low_stock_threshold = 2
+product3_active_status = True
+
+#Display an Inventory Line
+print("Inventory for Product 1:")
+print(f"{product1_SKU} | {product1_name} | ${product1_unit_price:.2f} | Qty: {product1_quantity}")
+print("------------------------")
+
+#Restock one item
+print(f"Quantity Before Restock: {product1_quantity}")
+print("Amount to Restock: 0")
+product1_quantity = product1_quantity + 0
+print(f"Latte Quantity after Restock: {product1_quantity}")
+print("------------------------")
+
+    #Sell one item
+sell_quantity = int(input("Please enter a sell quantity: "))
+subtotal = product1_unit_price * sell_quantity
+if sell_quantity > product1_quantity:
+    print(f"Error: Sale larger than available quantity")
+else:
+    product1_quantity = product1_quantity - sell_quantity
+    #Display Subtotal
+    print("Sale")
+    print(f"Item Sold: {product1_name}")
+    print(f"Unit Price: ${product1_unit_price:.2f}")
+    print(f"Quantity Sold: {sell_quantity}")
+    print(f"Subtotal: ${product1_unit_price:.2f} x {sell_quantity} = ${subtotal:.2f}")
+    print(f"Remaining Latte Quantity: {product1_quantity}")
+
+#Add a new product
+new_productSKU= input("Please input a new SKU:")
+if new_productSKU == "":
+    print("Error: Empty SKU")
+elif new_productSKU == product1_SKU or new_productSKU == product2_SKU or new_productSKU==product3_SKU:
+    print("Error: Duplicate SKU")
+else:
+    new_productSKU = new_productSKU
+    print(f"New SKU: {new_productSKU}")
+new_productName= input("Please input a new product name:")
+if new_productName == "":
+    print("Error: Empty Name")
+else:
+    new_productName = new_productName
+    print(f"New Name: {new_productName}")
+new_productCategory= input("Please input a new product category:")
+if new_productCategory == "":
+    print("Error: Empty Category")
+else:
+    new_productCategory = new_productCategory
+    print(f"New Category: {new_productCategory}")
