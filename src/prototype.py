@@ -140,3 +140,15 @@ if new_productCategory == "":
 else:
     new_productCategory = new_productCategory
     print(f"New Category: {new_productCategory}")
+new_productUnitPrice= int(input("Please input a new unit price:"))
+if new_productUnitPrice <= 0:
+    print("Error: Unit Price Must Be Positive")
+else:
+    new_productUnitPrice = new_productUnitPrice
+    print(f"New Unit Price: {new_productUnitPrice}")
+new_productQuantity= int(input("Please input a new quantity:"))
+if new_productQuantity < 0:
+    print("Error: Quantity Must Be Nonnegative")
+else:
+    new_productQuantity = new_productQuantity
+    print(f"New Quantity: {new_productQuantity}")
