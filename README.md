@@ -75,12 +75,9 @@ In addition to the pseudocode for workflows, I also created the following menu m
 The following menu will display when the program starts:
 
 1. Product Management
-2. Transactions
-3. Inventory Reports
-4. Save Inventory
-5. Load Inventory
-6. Quit
+2. Sale Transaction
+3. Inventory Report
 
-Enter your choice (1-6):
+Enter your choice (1-3):
 
 ---
