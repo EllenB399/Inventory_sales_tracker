@@ -1,6 +1,6 @@
 #Ellen Buckingham, prototype.py for Inventory_sales_tracker.
 
-#Prototype for Week 2
+##Prototype for Week 2
 #store the product's information
 product_name = "Latte"
 product_price = 3.00
@@ -13,7 +13,7 @@ print(f"Product Price: ${product_price:.2f}")
 print(f"Product Quantity: {product_quantity}")
 print(f"Product Subtotal: ${product_subtotal:.2f}")
 
-#Prototype for Week 3
+##Prototype for Week 3
 #Store 3 product's information
 
 #product1 information
@@ -63,7 +63,7 @@ print(f"Quantity Sold: {sell_quantity}")
 print(f"Subtotal: ${product1_unit_price:.2f} x {sell_quantity} = ${subtotal:.2f}")
 print(f"Remaining Latte Quantity: {product1_quantity}")
 
-#Prototype for Week 4
+##Prototype for Week 4
 
 #product1 information
 product1_SKU = "DRK001"
@@ -152,3 +152,181 @@ if new_productQuantity < 0:
 else:
     new_productQuantity = new_productQuantity
     print(f"New Quantity: {new_productQuantity}")
+
+##Repeating Command Line Menu for Week 6
+#Store product information
+products = [
+    {
+        "sku": "DRK001",
+        "name": "Latte",
+        "category": "Drink",
+        "unit_price": 3.00,
+        "quantity": 2,
+        "low_stock_threshold": 3,
+        "active_status": True
+    },
+    {
+        "sku": "DRK002",
+        "name": "Drip Coffee",
+        "category": "Drink",
+        "unit_price": 2.00,
+        "quantity": 20,
+        "low_stock_threshold": 5,
+        "active_status": True
+    },
+    {
+        "sku": "FD001",
+        "name": "Blueberry Scone",
+        "category": "Food",
+        "unit_price": 3.00,
+        "quantity": 8,
+        "low_stock_threshold": 2,
+        "active_status": True
+    }
+]
+#Function for find by SKU
+def find_by_SKU(sku):
+    for product in products:
+        if product["sku"] == sku:
+            return product
+    return None
+#Function for product validation
+def validate_product(sku, name, category, price, quantity):
+    if sku == "":
+        raise ValueError("SKU cannot be empty")
+    if find_by_SKU(sku) is not None:
+        raise ValueError("Duplicate SKU")
+    if name == "":
+        raise ValueError("Product name cannot be empty")
+    if category == "":
+        raise ValueError("Category cannot be empty")
+    if price <= 0:
+        raise ValueError("Price must be positive")
+    if quantity < 0:
+        raise ValueError("Quantity cannot be negative")
+    return True
+#Function for quantity validation
+def validate_quantity(quantity):
+    if quantity <= 0:
+        raise ValueError("Quantity must be positive")
+    return True
+#Function for adding product
+def add_product():
+    try:
+        sku = input("Enter new SKU: ")
+        name = input("Enter product name: ")
+        category = input("Enter product category: ")
+        price = float(input("Enter unit price: "))
+        quantity = int(input("Enter quantity: "))
+        validate_product(sku, name, category, price, quantity)
+        new_product = {
+            "sku": sku,
+            "name": name,
+            "category": category,
+            "unit_price": price,
+            "quantity": quantity,
+            "low_stock_threshold": 3,
+            "active_status": True
+        }
+        products.append(new_product)
+        print("Product successfully added!")
+        return new_product
+    except ValueError as error:
+        print(f"Error: {error}")
+        return None
+#Function for restocking
+def restock_product():
+    try:
+        sku = input("Enter SKU to restock: ")
+        product = find_by_SKU(sku)
+        if product is None:
+            raise ValueError("Product not found")
+        quantity_before = product["quantity"]
+        amount = int(input("Enter restock quantity: "))
+        if amount < 0:
+            raise ValueError("Restock quantity cannot be negative")
+        product["quantity"] += amount
+        quantity_after = product["quantity"]
+        print(f"Quantity before restock: {quantity_before}")
+        print(f"Quantity after restock: {quantity_after}")
+        return quantity_before, quantity_after
+    except ValueError as error:
+        print(f"Error: {error}")
+        return None
+#Function for recording sale
+def record_sale():
+    try:
+        sku = input("Enter SKU to sell: ")
+        product = find_by_SKU(sku)
+        if product is None:
+            raise ValueError("Product not found")
+        if not product["active_status"]:
+            raise ValueError("Product is inactive")
+        sell_quantity = int(input("Enter quantity to sell: "))
+        validate_quantity(sell_quantity)
+        if sell_quantity > product["quantity"]:
+            raise ValueError("Sale exceeds available inventory")
+        subtotal = product["unit_price"] * sell_quantity
+        product["quantity"] -= sell_quantity
+        print("\n*** Sales Receipt ***")
+        print(f"Product: {product['name']}")
+        print(f"Unit Price: ${product['unit_price']:.2f}")
+        print(f"Quantity Sold: {sell_quantity}")
+        print(f"Subtotal: ${subtotal:.2f}")
+        print(f"Remaining Quantity: {product['quantity']}")
+        return subtotal
+    except ValueError as error:
+        print(f"Error: {error}")
+        return None
+#Function for displaying inventory
+def display_inventory():
+    print("\n*** Inventory Report ***")
+    print("------------------------------------------")
+    for product in products:
+        print(f"SKU: {product['sku']}")
+        print(f"Name: {product['name']}")
+        print(f"Category: {product['category']}")
+        print(f"Unit Price: ${product['unit_price']:.2f}")
+        print(f"Quantity: {product['quantity']}")
+        print(f"Active Status: {product['active_status']}")
+        print("------------------------------------------")
+#Function for displaying menu
+def display_menu():
+    print("\n*** Menu Actions ***")
+    print("1. Add Product")
+    print("2. Find Product by SKU")
+    print("3. Restock Product")
+    print("4. Sale Transaction")
+    print("5. Inventory Report")
+    print("6. Exit")
+#Function for repeating command line menu
+def main():
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-6): ")
+        if choice == "1":
+            add_product()
+        elif choice == "2":
+            sku = input("Enter SKU to find: ")
+            product = find_by_SKU(sku)
+            if product is not None:
+                print("\nProduct Found:")
+                print(f"SKU: {product['sku']}")
+                print(f"Name: {product['name']}")
+                print(f"Category: {product['category']}")
+                print(f"Unit Price: ${product['unit_price']:.2f}")
+                print(f"Quantity: {product['quantity']}")
+            else:
+                print("Product not found")
+        elif choice == "3":
+            restock_product()
+        elif choice == "4":
+            record_sale()
+        elif choice == "5":
+            display_inventory()
+        elif choice == "6":
+            print("Exiting Program")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+main()
