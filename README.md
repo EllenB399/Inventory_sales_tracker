@@ -85,3 +85,5 @@ The following menu will display when the program starts:
 Enter your choice (1-6):
 
 ---
+
+_**Week 6**_ – This week, I updated the prototype with a repeating command-line menu. I implemented separate functions for displaying the menu, adding a product, finding by SKU, restocking, and recording a sale. Useful values are returned for each function. _**Acceptance Check**_: I successfully added a product, restocked it, sold some of it, viewed the final inventory, and exited the program. I recorded my tests and uploaded a test file to my tests folder.
